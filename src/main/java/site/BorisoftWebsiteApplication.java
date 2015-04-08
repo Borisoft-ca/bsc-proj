@@ -1,12 +1,24 @@
 package site;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class BorisoftWebsiteApplication {
+    private static final Logger logger = LoggerFactory.getLogger(BorisoftWebsiteApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication.run(BorisoftWebsiteApplication.class, args);
+        ApplicationContext context = SpringApplication.run(BorisoftWebsiteApplication.class, args);
+        logger.info(">>>>>>>>>>>> List of Beans in the Application Context: >>>>>>>>>>>>");
+        String beanNames[] = context.getBeanDefinitionNames();
+        Arrays.sort(beanNames);
+        for(String beanName : beanNames) {
+            logger.info(beanName);
+        }
     }
 }
